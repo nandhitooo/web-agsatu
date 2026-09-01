@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a437029-5b26-457e-a1cd-54944841112c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/web-agsatu-client/eslint.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-agsatu-client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/web-agsatu-client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-agsatu-client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/web-agsatu-client/package.json" afterDir="false" />
-    </list>
+    <list default="true" id="3a437029-5b26-457e-a1cd-54944841112c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,23 +26,23 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0" />
-      <entry key="S5" value="1.0" />
-      <entry key="S10" value="1.0" />
-      <entry key="S30" value="1.0" />
-      <entry key="S60" value="1.0" />
-      <entry key="M2" value="1.0" />
-      <entry key="M5" value="1.0" />
-      <entry key="M10" value="1.0" />
-      <entry key="M15" value="1.0" />
-      <entry key="M30" value="1.0" />
-      <entry key="H1" value="1.0" />
-      <entry key="H2" value="1.0" />
-      <entry key="H4" value="1.0" />
-      <entry key="D1" value="1.0" />
-      <entry key="W1" value="1.0" />
+      <entry key="MS100" value="1.044782065567591" />
+      <entry key="MS500" value="1.823368487843794" />
+      <entry key="S2" value="2.5886979929844567" />
+      <entry key="S5" value="2.822799278379123" />
+      <entry key="S10" value="2.9091281473978663" />
+      <entry key="S30" value="2.969188951269454" />
+      <entry key="S60" value="2.984528417039476" />
+      <entry key="M2" value="2.992247617511965" />
+      <entry key="M5" value="2.99689505534631" />
+      <entry key="M10" value="2.998446861576907" />
+      <entry key="M15" value="2.998964426302424" />
+      <entry key="M30" value="2.9994821390949173" />
+      <entry key="H1" value="2.999741051030534" />
+      <entry key="H2" value="2.999870520885679" />
+      <entry key="H4" value="2.999935259285398" />
+      <entry key="D1" value="2.99998920972014" />
+      <entry key="W1" value="2.9999984585275117" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -68,23 +64,23 @@
       <entry key="W1" value="0.0" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.0027813480382755293" />
-      <entry key="MS500" value="0.30821308136595166" />
-      <entry key="S2" value="0.7450969177323977" />
-      <entry key="S5" value="0.8889659094675901" />
-      <entry key="S10" value="0.9428498870274049" />
-      <entry key="S30" value="0.9805750779314918" />
-      <entry key="S60" value="0.9902399092803177" />
-      <entry key="M2" value="0.9951079887531391" />
-      <entry key="M5" value="0.9980403161716926" />
-      <entry key="M10" value="0.9990196775698128" />
-      <entry key="M15" value="0.9993463448853166" />
-      <entry key="M30" value="0.9996731190170698" />
-      <entry key="H1" value="0.9998365461499543" />
-      <entry key="H2" value="0.999918269735059" />
-      <entry key="H4" value="0.9999591340325159" />
-      <entry key="D1" value="0.9999931888894423" />
-      <entry key="W1" value="0.9999990269813658" />
+      <entry key="MS100" value="0.7240637275220951" />
+      <entry key="MS500" value="1.317851375403504" />
+      <entry key="S2" value="2.2657638157252804" />
+      <entry key="S5" value="2.6632145695101923" />
+      <entry key="S10" value="2.82336485222793" />
+      <entry key="S30" value="2.9391783353610488" />
+      <entry key="S60" value="2.969338912686838" />
+      <entry key="M2" value="2.9846063273216137" />
+      <entry key="M5" value="2.9938273069907306" />
+      <entry key="M10" value="2.9969111100653953" />
+      <entry key="M15" value="2.9979401743836394" />
+      <entry key="M30" value="2.998969804248427" />
+      <entry key="H1" value="2.999484831367092" />
+      <entry key="H2" value="2.9997423979916054" />
+      <entry key="H4" value="2.999871194572485" />
+      <entry key="D1" value="2.9999785318143695" />
+      <entry key="W1" value="2.999996933101292" />
     </decayedShown>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="$PROJECT_DIR$/../../../softwares/PHP/php-8.5.10/php.exe">
@@ -224,15 +220,31 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "npm.dev.executor": "Run",
     "settings.editor.selected.configurable": "terminal",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="npm.dev">
     <configuration name="Main" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner configuration_file="$PROJECT_DIR$/web-agsatu-api/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
       <method v="2" />
     </configuration>
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/web-agsatu-client/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.dev" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -250,7 +262,7 @@
       <option name="presentableId" value="Default" />
       <updated>1788230433512</updated>
       <workItem from="1788230439013" duration="2989000" />
-      <workItem from="1788233467584" duration="305000" />
+      <workItem from="1788233467584" duration="985000" />
     </task>
     <servers />
   </component>
