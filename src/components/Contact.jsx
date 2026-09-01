@@ -101,7 +101,7 @@ export default function Contact() {
                     </svg>
                   ),
                   label: "Kantor",
-                  value: "Jakarta, Indonesia",
+                  value: "Kota Kediri, Indonesia",
                   href: "#",
                 },
               ].map((item) => (

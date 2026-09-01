@@ -29,13 +29,6 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-32 sm:pt-36 pb-20 sm:pb-24">
-        <div
-          className={`inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary text-sm font-medium rounded-full mb-7 sm:mb-9 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
-        >
-          <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-          Menerima proyek baru
-        </div>
-
         <h1
           className={`text-balance text-4xl sm:text-5xl md:text-6xl 2xl:text-7xl font-extrabold tracking-tight text-dark leading-[1.15] mb-7 sm:mb-8 transition-all duration-700 delay-100 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
         >
