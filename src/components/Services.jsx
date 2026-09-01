@@ -17,8 +17,8 @@ const services = [
     ),
     title: "Pengembangan Web",
     description:
-      "Aplikasi web modern dan responsif dibangun dengan React, Next.js, Vue, dan lainnya. Dari halaman akses hingga platform SaaS yang kompleks.",
-    tags: ["React", "Next.js", "Vue", "TypeScript"],
+      "Aplikasi web modern dan responsif dibangun dengan Laravel. Dari halaman akses hingga platform SaaS yang kompleks.",
+    tags: ["Laravel", "PHP", "MySQL"],
   },
   {
     icon: (
@@ -38,8 +38,8 @@ const services = [
     ),
     title: "Aplikasi Mobile",
     description:
-      "Aplikasi mobile lintas platform dengan React Native dan Flutter yang memberikan kinerja seperti native di iOS dan Android.",
-    tags: ["React Native", "Flutter", "iOS", "Android"],
+      "Aplikasi mobile lintas platform dengan Flutter yang memberikan kinerja seperti native di iOS dan Android.",
+    tags: ["Flutter", "iOS", "Android"],
   },
   {
     icon: (
@@ -60,7 +60,7 @@ const services = [
     title: "Backend & API",
     description:
       "Arsitektur server yang terukur, API RESTful dan GraphQL, microservices, dan desain database yang mendukung aplikasi Anda.",
-    tags: ["Node.js", "Python", "PostgreSQL", "GraphQL"],
+    tags: ["Laravel", "PostgreSQL", "GraphQL"],
   },
   {
     icon: (
