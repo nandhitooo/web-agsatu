@@ -382,7 +382,7 @@ Frontend berjalan di: `http://localhost:5173`
 Proyek Kerja Praktik ini dikembangkan oleh:
 
 1. **[Fernandhito Dian Pratama]** — [@nandhitooo](https://github.com/nandhitooo)
-2. **[Mohammad Daffa Teuku Filan Alfarizhi]** — [@github-mdafftfa](https://github.com/mdafftfa)
+2. **[Mohammad Daffa Teuku Filan Alfarizhi]** — [@mdafftfa](https://github.com/mdafftfa)
 
 ---
 
