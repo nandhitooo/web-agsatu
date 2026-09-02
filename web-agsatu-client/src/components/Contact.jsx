@@ -1,4 +1,5 @@
 import { useState } from "react";
+import api from "../services/api";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -9,11 +10,29 @@ export default function Contact() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [focused, setFocused] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setFormData({ name: "", email: "", company: "", message: "" });
+    setSubmitting(true);
+    setError(null);
+
+    try {
+      await api.post("/inquiries", formData);
+      setSubmitted(true);
+      setFormData({ name: "", email: "", company: "", message: "" });
+    } catch (err) {
+      if (err.response?.status === 422) {
+        // Error validasi dari Laravel, ambil pesan pertama yang ada
+        const firstError = Object.values(err.response.data.errors || {})[0];
+        setError(firstError?.[0] || "Data yang dikirim tidak valid.");
+      } else {
+        setError("Gagal mengirim pesan. Silakan coba lagi.");
+      }
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -160,6 +179,11 @@ export default function Contact() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {error && (
+                    <div className="px-4 py-3 rounded-xl bg-red-50 text-red-600 text-sm">
+                      {error}
+                    </div>
+                  )}
                   <div>
                     <label
                       htmlFor="name"
@@ -262,9 +286,10 @@ export default function Contact() {
                   </div>
                   <button
                     type="submit"
-                    className="w-full py-3.5 bg-primary text-white font-semibold rounded-xl hover:bg-primary-dark transition-all shadow-md shadow-primary/25 hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5"
+                    disabled={submitting}
+                    className="w-full py-3.5 bg-primary text-white font-semibold rounded-xl hover:bg-primary-dark transition-all shadow-md shadow-primary/25 hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0"
                   >
-                    Kirim Pesan
+                    {submitting ? "Mengirim..." : "Kirim Pesan"}
                   </button>
                 </form>
               )}

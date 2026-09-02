@@ -35,14 +35,14 @@ export default function About() {
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-2.5 pt-6 border-t border-gray-100">
-                  <div className="px-3 py-1.5 bg-primary/10 text-primary text-xs font-semibold rounded-full">
-                    React
+                  <div className="px-3 py-1.5 bg-primary/10 text-red-600 text-xs font-semibold rounded-full">
+                    Laravel
                   </div>
-                  <div className="px-3 py-1.5 bg-secondary/10 text-secondary text-xs font-semibold rounded-full">
-                    Node.js
+                  <div className="px-3 py-1.5 bg-secondary/10 text-indigo-500 text-xs font-semibold rounded-full">
+                    PHP
                   </div>
                   <div className="px-3 py-1.5 bg-accent/10 text-amber-600 text-xs font-semibold rounded-full">
-                    Cloud
+                    Flutter
                   </div>
                 </div>
               </div>

@@ -53,13 +53,36 @@ function App() {
       { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
     );
 
-    document
-      .querySelectorAll(".reveal, .reveal-left, .reveal-right")
-      .forEach((el) => {
-        observer.observe(el);
-      });
+    const observeAll = () => {
+      document
+        .querySelectorAll(
+          ".reveal:not(.visible), .reveal-left:not(.visible), .reveal-right:not(.visible)",
+        )
+        .forEach((el) => {
+          observer.observe(el);
+        });
+    };
 
-    return () => observer.disconnect();
+    // Scan pertama kali saat mount (untuk konten yang sudah statis ada)
+    observeAll();
+
+    // Karena Services/Portfolio ambil data dari API secara async,
+    // elemen ".reveal" barunya baru muncul belakangan setelah data datang.
+    // MutationObserver ini mendeteksi elemen baru itu dan langsung
+    // mendaftarkannya juga ke IntersectionObserver.
+    const mutationObserver = new MutationObserver(() => {
+      observeAll();
+    });
+
+    mutationObserver.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+
+    return () => {
+      observer.disconnect();
+      mutationObserver.disconnect();
+    };
   }, []);
 
   return (
