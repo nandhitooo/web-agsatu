@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, Navigate } from "react-router-dom";
+import { useNavigate, Navigate, Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
 export default function Login() {
@@ -10,9 +10,10 @@ export default function Login() {
   const [error, setError] = useState(null);
   const [submitting, setSubmitting] = useState(false);
 
-  // Kalau sudah login, jangan tampilkan halaman login lagi
+  // Kalau sudah login, jangan tampilkan halaman login lagi —
+  // arahkan sesuai role, bukan selalu ke /admin.
   if (user) {
-    return <Navigate to="/admin" replace />;
+    return <Navigate to={user.role === "admin" ? "/admin" : "/client"} replace />;
   }
 
   const handleSubmit = async (e) => {
@@ -42,9 +43,12 @@ export default function Login() {
     <div className="min-h-screen flex items-center justify-center bg-surface px-4">
       <div className="w-full max-w-md bg-white rounded-2xl border border-gray-100 shadow-sm p-8 sm:p-10">
         <div className="text-center mb-8">
-          <div className="w-12 h-12 rounded-xl bg-primary text-white flex items-center justify-center font-bold text-xl mx-auto mb-4">
+          <Link
+            to="/"
+            className="w-12 h-12 rounded-xl bg-primary text-white flex items-center justify-center font-bold text-xl mx-auto mb-4 hover:opacity-90 transition-opacity"
+          >
             A
-          </div>
+          </Link>
           <h1 className="text-2xl font-bold text-dark">Masuk ke AGSatu</h1>
           <p className="text-gray text-sm mt-1">
             Khusus admin dan klien terdaftar
@@ -102,6 +106,12 @@ export default function Login() {
             {submitting ? "Memproses..." : "Masuk"}
           </button>
         </form>
+
+        <p className="text-center text-sm text-gray mt-6">
+          <Link to="/" className="text-primary font-medium hover:underline">
+            &larr; Kembali ke Beranda
+          </Link>
+        </p>
       </div>
     </div>
   );

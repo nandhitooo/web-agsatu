@@ -16,7 +16,7 @@ class TestimonialResource extends JsonResource
             'company' => $this->company,
             'message' => $this->message,
             'rating' => $this->rating,
-            'photo_url' => $this->photo ? Storage::url($this->photo) : null,
+            'photo_url' => $this->photo ? url(Storage::url($this->photo)) : null,
             'is_published' => $this->is_published,
         ];
     }

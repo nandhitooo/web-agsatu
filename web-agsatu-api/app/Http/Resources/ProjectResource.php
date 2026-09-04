@@ -38,7 +38,7 @@ class ProjectResource extends JsonResource
                     'id' => $d->id,
                     'file_name' => $d->file_name,
                     'type' => $d->type,
-                    'url' => Storage::url($d->file_path),
+                    'url' => url(Storage::url($d->file_path)),
                     'uploaded_by' => $d->uploader?->name,
                     'created_at' => $d->created_at?->format('Y-m-d H:i'),
                 ]);

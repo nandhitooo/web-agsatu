@@ -40,7 +40,7 @@ export default function ProjectDetailAdmin() {
     setLoading(true);
     api
       .get(`/admin/projects/${id}`)
-      .then((res) => setProject(res.data))
+      .then((res) => setProject(res.data.data))
       .finally(() => setLoading(false));
   };
 

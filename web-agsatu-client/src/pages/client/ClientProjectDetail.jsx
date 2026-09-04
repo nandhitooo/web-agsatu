@@ -37,7 +37,7 @@ export default function ClientProjectDetail() {
   useEffect(() => {
     api
       .get(`/client/projects/${id}`)
-      .then((res) => setProject(res.data))
+      .then((res) => setProject(res.data.data))
       .catch(() => setNotFound(true))
       .finally(() => setLoading(false));
   }, [id]);

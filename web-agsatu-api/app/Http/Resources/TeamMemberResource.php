@@ -15,7 +15,7 @@ class TeamMemberResource extends JsonResource
             'name' => $this->name,
             'role' => $this->role,
             'bio' => $this->bio,
-            'photo_url' => $this->photo ? Storage::url($this->photo) : null,
+            'photo_url' => $this->photo ? url(Storage::url($this->photo)) : null,
             'github_url' => $this->github_url,
             'linkedin_url' => $this->linkedin_url,
             'twitter_url' => $this->twitter_url,
