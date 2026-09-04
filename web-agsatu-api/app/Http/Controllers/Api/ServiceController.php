@@ -24,6 +24,17 @@ class ServiceController extends Controller
     }
 
     /**
+     * GET /api/admin/services
+     * Admin: lihat SEMUA data (aktif maupun non-aktif).
+     */
+    public function adminIndex(): JsonResponse
+    {
+        $services = Service::orderBy('order')->get();
+
+        return ServiceResource::collection($services)->response();
+    }
+
+    /**
      * GET /api/services/{service} (admin, termasuk yang non-aktif)
      */
     public function show(Service $service): JsonResponse

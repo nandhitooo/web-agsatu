@@ -1,102 +1,58 @@
-import { useEffect, useState } from "react";
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import About from "./components/About";
-import Services from "./components/Services";
-import Team from "./components/Team";
-import Portfolio from "./components/Portfolio";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
-
-function ScrollToTop() {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 400);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  return (
-    <button
-      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className={`fixed bottom-5 sm:bottom-6 right-4 sm:right-6 lg:right-8 z-50 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-primary/90 backdrop-blur text-white shadow-lg shadow-primary/30 flex items-center justify-center hover:bg-primary transition-all duration-300 hover:-translate-y-0.5 ${
-        visible
-          ? "opacity-100 translate-y-0"
-          : "opacity-0 translate-y-4 pointer-events-none"
-      }`}
-      aria-label="Kembali ke atas"
-    >
-      <svg
-        className="w-4 h-4 sm:w-5 sm:h-5"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        strokeWidth={2}
-      >
-        <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
-      </svg>
-    </button>
-  );
-}
+import { Routes, Route } from "react-router-dom";
+import LandingPage from "./pages/public/LandingPage";
+import Login from "./pages/auth/Login";
+import ProtectedRoute from "./routes/ProtectedRoute";
+import AdminLayout from "./layouts/AdminLayout";
+import Dashboard from "./pages/admin/Dashboard";
+import ManageServices from "./pages/admin/ManageServices";
+import ManagePortfolios from "./pages/admin/ManagePortfolios";
+import ManageTeam from "./pages/admin/ManageTeam";
+import ManageTestimonials from "./pages/admin/ManageTestimonials";
+import ManageInquiries from "./pages/admin/ManageInquiries";
+import ManageClients from "./pages/admin/ManageClients";
+import ManageProjects from "./pages/admin/ManageProjects";
+import ProjectDetailAdmin from "./pages/admin/ProjectDetailAdmin";
+import ClientLayout from "./layouts/ClientLayout";
+import ClientProjects from "./pages/client/ClientProjects";
+import ClientProjectDetail from "./pages/client/ClientProjectDetail";
 
 function App() {
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
-    );
-
-    const observeAll = () => {
-      document
-        .querySelectorAll(
-          ".reveal:not(.visible), .reveal-left:not(.visible), .reveal-right:not(.visible)",
-        )
-        .forEach((el) => {
-          observer.observe(el);
-        });
-    };
-
-    // Scan pertama kali saat mount (untuk konten yang sudah statis ada)
-    observeAll();
-
-    // Karena Services/Portfolio ambil data dari API secara async,
-    // elemen ".reveal" barunya baru muncul belakangan setelah data datang.
-    // MutationObserver ini mendeteksi elemen baru itu dan langsung
-    // mendaftarkannya juga ke IntersectionObserver.
-    const mutationObserver = new MutationObserver(() => {
-      observeAll();
-    });
-
-    mutationObserver.observe(document.body, {
-      childList: true,
-      subtree: true,
-    });
-
-    return () => {
-      observer.disconnect();
-      mutationObserver.disconnect();
-    };
-  }, []);
-
   return (
-    <>
-      <Navbar />
-      <Hero />
-      <About />
-      <Services />
-      <Team />
-      <Portfolio />
-      <Contact />
-      <Footer />
-      <ScrollToTop />
-    </>
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/login" element={<Login />} />
+
+      <Route
+        path="/admin"
+        element={
+          <ProtectedRoute allowedRoles={["admin"]}>
+            <AdminLayout />
+          </ProtectedRoute>
+        }
+      >
+        <Route index element={<Dashboard />} />
+        <Route path="services" element={<ManageServices />} />
+        <Route path="portfolios" element={<ManagePortfolios />} />
+        <Route path="team" element={<ManageTeam />} />
+        <Route path="testimonials" element={<ManageTestimonials />} />
+        <Route path="inquiries" element={<ManageInquiries />} />
+        <Route path="clients" element={<ManageClients />} />
+        <Route path="projects" element={<ManageProjects />} />
+        <Route path="projects/:id" element={<ProjectDetailAdmin />} />
+      </Route>
+
+      <Route
+        path="/client"
+        element={
+          <ProtectedRoute allowedRoles={["client"]}>
+            <ClientLayout />
+          </ProtectedRoute>
+        }
+      >
+        <Route index element={<ClientProjects />} />
+        <Route path="projects/:id" element={<ClientProjectDetail />} />
+      </Route>
+    </Routes>
   );
 }
 

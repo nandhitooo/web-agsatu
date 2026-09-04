@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const navLinks = [
   { label: "Beranda", href: "#beranda" },
@@ -10,9 +12,18 @@ const navLinks = [
 ];
 
 export default function Navbar() {
+  const { user } = useAuth();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("beranda");
+
+  const authLinkTo =
+    user?.role === "admin" ? "/admin" : user?.role === "client" ? "/client" : "/login";
+  const authLinkLabel = user?.role === "admin"
+    ? "Dashboard"
+    : user?.role === "client"
+      ? "Portal Klien"
+      : "Masuk";
 
   useEffect(() => {
     const onScroll = () => {
@@ -77,6 +88,16 @@ export default function Navbar() {
               </a>
             );
           })}
+          <Link
+            to={authLinkTo}
+            className={`px-4 py-2.5 text-sm font-medium rounded-lg transition-all ${
+              scrolled
+                ? "text-gray-600 hover:text-primary hover:bg-gray-50"
+                : "text-gray-700 hover:text-primary hover:bg-gray-50"
+            }`}
+          >
+            {authLinkLabel}
+          </Link>
           <a
             href="#kontak"
             className="ml-4 px-5 py-2.5 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-primary-dark transition-all shadow-md shadow-primary/25 hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5 whitespace-nowrap"
@@ -125,6 +146,13 @@ export default function Navbar() {
               </a>
             );
           })}
+          <Link
+            to={authLinkTo}
+            onClick={() => setMobileOpen(false)}
+            className="px-4 py-3 font-medium rounded-lg text-gray-700 hover:text-primary hover:bg-gray-50 transition-all"
+          >
+            {authLinkLabel}
+          </Link>
           <a
             href="#kontak"
             onClick={() => setMobileOpen(false)}

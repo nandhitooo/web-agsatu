@@ -27,6 +27,17 @@ class PortfolioController extends Controller
     }
 
     /**
+     * GET /api/admin/portfolios
+     * Admin: lihat SEMUA data (published maupun belum).
+     */
+    public function adminIndex(): JsonResponse
+    {
+        $portfolios = Portfolio::with('images')->latest()->get();
+
+        return PortfolioResource::collection($portfolios)->response();
+    }
+
+    /**
      * GET /api/portfolios/{portfolio}
      */
     public function show(Portfolio $portfolio): JsonResponse

@@ -24,6 +24,17 @@ class TestimonialController extends Controller
     }
 
     /**
+     * GET /api/admin/testimonials
+     * Admin: lihat SEMUA data (published maupun belum).
+     */
+    public function adminIndex(): JsonResponse
+    {
+        $testimonials = Testimonial::latest()->get();
+
+        return TestimonialResource::collection($testimonials)->response();
+    }
+
+    /**
      * POST /api/admin/testimonials
      */
     public function store(StoreTestimonialRequest $request): JsonResponse
