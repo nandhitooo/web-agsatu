@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import api from "../services/api";
 
 export default function Contact() {
@@ -12,6 +12,21 @@ export default function Contact() {
   const [focused, setFocused] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(null);
+  const [contactInfo, setContactInfo] = useState({
+    email: "",
+    phone: "",
+    office_address: "",
+  });
+
+  useEffect(() => {
+    api
+      .get("/contact-info")
+      .then((res) => setContactInfo(res.data.data))
+      .catch(() => {
+        // biarkan default kosong kalau gagal, kartu kontak cuma tidak
+        // menampilkan nilai daripada bikin seluruh section error
+      });
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -75,8 +90,8 @@ export default function Contact() {
                     </svg>
                   ),
                   label: "Email",
-                  value: "hello@agsatu.id",
-                  href: "mailto:hello@agsatu.id",
+                  value: contactInfo.email || "-",
+                  href: contactInfo.email ? `mailto:${contactInfo.email}` : "#",
                 },
                 {
                   icon: (
@@ -95,8 +110,10 @@ export default function Contact() {
                     </svg>
                   ),
                   label: "Telepon",
-                  value: "+62 21 5555 0123",
-                  href: "tel:+622155550123",
+                  value: contactInfo.phone || "-",
+                  href: contactInfo.phone
+                    ? `tel:${contactInfo.phone.replace(/\s+/g, "")}`
+                    : "#",
                 },
                 {
                   icon: (
@@ -120,7 +137,7 @@ export default function Contact() {
                     </svg>
                   ),
                   label: "Kantor",
-                  value: "Kota Kediri, Indonesia",
+                  value: contactInfo.office_address || "-",
                   href: "#",
                 },
               ].map((item) => (

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../../services/api";
 import Modal from "../../components/admin/Modal";
+import PhotoUploadWithCrop from "../../components/admin/PhotoUploadWithCrop";
 
 const emptyForm = {
   id: null,
@@ -19,6 +20,7 @@ export default function ManageTestimonials() {
   const [form, setForm] = useState(emptyForm);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState(null);
+  const [editingPhotoUrl, setEditingPhotoUrl] = useState(null);
 
   const loadTestimonials = () => {
     setLoading(true);
@@ -34,6 +36,7 @@ export default function ManageTestimonials() {
 
   const openCreate = () => {
     setForm(emptyForm);
+    setEditingPhotoUrl(null);
     setError(null);
     setModalOpen(true);
   };
@@ -48,6 +51,7 @@ export default function ManageTestimonials() {
       is_published: testimonial.is_published,
       photo: null,
     });
+    setEditingPhotoUrl(testimonial.photo_url || null);
     setError(null);
     setModalOpen(true);
   };
@@ -241,22 +245,13 @@ export default function ManageTestimonials() {
               ))}
             </select>
           </div>
-          <div>
-            <label className="block text-sm font-medium text-dark mb-1.5">
-              Foto{" "}
-              <span className="text-gray font-normal">
-                (opsional, kosongkan kalau tidak diubah)
-              </span>
-            </label>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={(e) =>
-                setForm({ ...form, photo: e.target.files[0] })
-              }
-              className="w-full text-sm"
-            />
-          </div>
+          <PhotoUploadWithCrop
+            label="Foto"
+            hint="(opsional, kosongkan kalau tidak diubah)"
+            aspect={1}
+            initialPreviewUrl={editingPhotoUrl}
+            onChange={(file) => setForm({ ...form, photo: file })}
+          />
           <label className="flex items-center gap-2 text-sm text-dark">
             <input
               type="checkbox"

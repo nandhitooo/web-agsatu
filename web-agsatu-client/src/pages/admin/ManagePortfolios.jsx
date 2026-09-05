@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../../services/api";
 import Modal from "../../components/admin/Modal";
+import PhotoUploadWithCrop from "../../components/admin/PhotoUploadWithCrop";
 
 const emptyForm = {
   id: null,
@@ -21,6 +22,7 @@ export default function ManagePortfolios() {
   const [form, setForm] = useState(emptyForm);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState(null);
+  const [editingThumbnailUrl, setEditingThumbnailUrl] = useState(null);
 
   const loadPortfolios = () => {
     setLoading(true);
@@ -36,6 +38,7 @@ export default function ManagePortfolios() {
 
   const openCreate = () => {
     setForm(emptyForm);
+    setEditingThumbnailUrl(null);
     setError(null);
     setModalOpen(true);
   };
@@ -52,6 +55,7 @@ export default function ManagePortfolios() {
       is_published: portfolio.is_published,
       thumbnail: null,
     });
+    setEditingThumbnailUrl(portfolio.thumbnail_url || null);
     setError(null);
     setModalOpen(true);
   };
@@ -270,22 +274,13 @@ export default function ManagePortfolios() {
               className="w-full px-3.5 py-2.5 rounded-lg border border-gray-200 outline-none focus:border-primary text-sm"
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-dark mb-1.5">
-              Thumbnail{" "}
-              <span className="text-gray font-normal">
-                (kosongkan kalau tidak diubah)
-              </span>
-            </label>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={(e) =>
-                setForm({ ...form, thumbnail: e.target.files[0] })
-              }
-              className="w-full text-sm"
-            />
-          </div>
+          <PhotoUploadWithCrop
+            label="Thumbnail"
+            hint="(kosongkan kalau tidak diubah)"
+            aspect={16 / 9}
+            initialPreviewUrl={editingThumbnailUrl}
+            onChange={(file) => setForm({ ...form, thumbnail: file })}
+          />
           <label className="flex items-center gap-2 text-sm text-dark">
             <input
               type="checkbox"

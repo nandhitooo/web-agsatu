@@ -9,6 +9,7 @@ const menuItems = [
   { to: "/admin/team", label: "Tim" },
   { to: "/admin/testimonials", label: "Testimoni" },
   { to: "/admin/inquiries", label: "Pesan Masuk" },
+  { to: "/admin/contact-info", label: "Info Kontak" },
   { to: "/admin/clients", label: "Klien" },
   { to: "/admin/projects", label: "Proyek" },
 ];

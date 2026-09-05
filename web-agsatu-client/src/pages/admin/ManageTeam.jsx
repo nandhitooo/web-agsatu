@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../../services/api";
 import Modal from "../../components/admin/Modal";
+import PhotoUploadWithCrop from "../../components/admin/PhotoUploadWithCrop";
 
 const emptyForm = {
   id: null,
@@ -22,6 +23,7 @@ export default function ManageTeam() {
   const [form, setForm] = useState(emptyForm);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState(null);
+  const [editingPhotoUrl, setEditingPhotoUrl] = useState(null);
 
   const loadMembers = () => {
     setLoading(true);
@@ -37,6 +39,7 @@ export default function ManageTeam() {
 
   const openCreate = () => {
     setForm(emptyForm);
+    setEditingPhotoUrl(null);
     setError(null);
     setModalOpen(true);
   };
@@ -54,6 +57,7 @@ export default function ManageTeam() {
       is_active: member.is_active,
       photo: null,
     });
+    setEditingPhotoUrl(member.photo_url || null);
     setError(null);
     setModalOpen(true);
   };
@@ -243,20 +247,13 @@ export default function ManageTeam() {
               className="w-full px-3.5 py-2.5 rounded-lg border border-gray-200 outline-none focus:border-primary text-sm resize-none"
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-dark mb-1.5">
-              Foto{" "}
-              <span className="text-gray font-normal">
-                (opsional — kalau kosong, tampil avatar inisial otomatis)
-              </span>
-            </label>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={(e) => setForm({ ...form, photo: e.target.files[0] })}
-              className="w-full text-sm"
-            />
-          </div>
+          <PhotoUploadWithCrop
+            label="Foto"
+            hint="(opsional — kalau kosong, tampil avatar inisial otomatis)"
+            aspect={1}
+            initialPreviewUrl={editingPhotoUrl}
+            onChange={(file) => setForm({ ...form, photo: file })}
+          />
           <div className="grid grid-cols-3 gap-3">
             <div>
               <label className="block text-sm font-medium text-dark mb-1.5">

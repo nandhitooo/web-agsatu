@@ -10,6 +10,7 @@ import ManagePortfolios from "./pages/admin/ManagePortfolios";
 import ManageTeam from "./pages/admin/ManageTeam";
 import ManageTestimonials from "./pages/admin/ManageTestimonials";
 import ManageInquiries from "./pages/admin/ManageInquiries";
+import ManageContactInfo from "./pages/admin/ManageContactInfo";
 import ManageClients from "./pages/admin/ManageClients";
 import ManageProjects from "./pages/admin/ManageProjects";
 import ProjectDetailAdmin from "./pages/admin/ProjectDetailAdmin";
@@ -38,6 +39,7 @@ function App() {
         <Route path="team" element={<ManageTeam />} />
         <Route path="testimonials" element={<ManageTestimonials />} />
         <Route path="inquiries" element={<ManageInquiries />} />
+        <Route path="contact-info" element={<ManageContactInfo />} />
         <Route path="clients" element={<ManageClients />} />
         <Route path="projects" element={<ManageProjects />} />
         <Route path="projects/:id" element={<ProjectDetailAdmin />} />

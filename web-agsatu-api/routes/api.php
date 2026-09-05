@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\Admin\ProjectMilestoneController;
 use App\Http\Controllers\Api\AboutContentController;
 use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\Client\ClientProjectController;
+use App\Http\Controllers\Api\ContactInfoController;
 use App\Http\Controllers\Api\InquiryController;
 use App\Http\Controllers\Api\PortfolioController;
 use App\Http\Controllers\Api\ServiceController;
@@ -25,6 +26,7 @@ Route::get('/portfolios/{portfolio}', [PortfolioController::class, 'show']);
 Route::get('/testimonials', [TestimonialController::class, 'index']);
 Route::get('/team', [TeamMemberController::class, 'index']);
 Route::get('/about', [AboutContentController::class, 'index']);
+Route::get('/contact-info', [ContactInfoController::class, 'index']);
 Route::post('/inquiries', [InquiryController::class, 'store']);
 
 /*
@@ -70,6 +72,9 @@ Route::middleware(['auth:sanctum', 'role:admin'])
 
         Route::get('/about', [AboutContentController::class, 'index']);
         Route::put('/about', [AboutContentController::class, 'update']);
+
+        Route::get('/contact-info', [ContactInfoController::class, 'index']);
+        Route::put('/contact-info', [ContactInfoController::class, 'update']);
 
         Route::get('/inquiries', [InquiryController::class, 'index']);
         Route::put('/inquiries/{inquiry}', [InquiryController::class, 'update']);

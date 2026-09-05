@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             CompanyProfileSeeder::class,
             TeamMemberSeeder::class,
             AboutContentSeeder::class,
+            ContactInfoSeeder::class,
             ClientPortalSeeder::class,
         ]);
 
