@@ -4,6 +4,7 @@ import Login from "./pages/auth/Login";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import AdminLayout from "./layouts/AdminLayout";
 import Dashboard from "./pages/admin/Dashboard";
+import ManageAbout from "./pages/admin/ManageAbout";
 import ManageServices from "./pages/admin/ManageServices";
 import ManagePortfolios from "./pages/admin/ManagePortfolios";
 import ManageTeam from "./pages/admin/ManageTeam";
@@ -31,6 +32,7 @@ function App() {
         }
       >
         <Route index element={<Dashboard />} />
+        <Route path="about" element={<ManageAbout />} />
         <Route path="services" element={<ManageServices />} />
         <Route path="portfolios" element={<ManagePortfolios />} />
         <Route path="team" element={<ManageTeam />} />

@@ -1,4 +1,24 @@
+import { useEffect, useState } from "react";
+import api from "../services/api";
+
+const badgeColors = [
+  "bg-primary/10 text-red-600",
+  "bg-secondary/10 text-indigo-500",
+  "bg-accent/10 text-amber-600",
+];
+
 export default function About() {
+  const [about, setAbout] = useState(null);
+
+  useEffect(() => {
+    api
+      .get("/about")
+      .then((res) => setAbout(res.data.data))
+      .catch(() => setAbout(null));
+  }, []);
+
+  if (!about) return null;
+
   return (
     <section
       id="tentang"
@@ -27,24 +47,26 @@ export default function About() {
                     </svg>
                   </div>
                   <h3 className="text-2xl font-bold text-dark mb-3">
-                    Inovasi Utama
+                    {about.highlight_title}
                   </h3>
                   <p className="text-gray leading-relaxed">
-                    Kami memanfaatkan teknologi terkini untuk membangun solusi
-                    yang terbukti, siap masa depan.
+                    {about.highlight_description}
                   </p>
                 </div>
-                <div className="flex flex-wrap gap-2.5 pt-6 border-t border-gray-100">
-                  <div className="px-3 py-1.5 bg-primary/10 text-red-600 text-xs font-semibold rounded-full">
-                    Laravel
+                {about.tech_badges.length > 0 && (
+                  <div className="flex flex-wrap gap-2.5 pt-6 border-t border-gray-100">
+                    {about.tech_badges.map((badge, index) => (
+                      <div
+                        key={badge}
+                        className={`px-3 py-1.5 text-xs font-semibold rounded-full ${
+                          badgeColors[index % badgeColors.length]
+                        }`}
+                      >
+                        {badge}
+                      </div>
+                    ))}
                   </div>
-                  <div className="px-3 py-1.5 bg-secondary/10 text-indigo-500 text-xs font-semibold rounded-full">
-                    PHP
-                  </div>
-                  <div className="px-3 py-1.5 bg-accent/10 text-amber-600 text-xs font-semibold rounded-full">
-                    Flutter
-                  </div>
-                </div>
+                )}
               </div>
             </div>
             <div className="absolute -bottom-4 -right-4 w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-primary to-secondary rounded-2xl -z-10 shadow-lg shadow-primary/20" />
@@ -57,64 +79,48 @@ export default function About() {
               Tentang Kami
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-dark mt-3 mb-6 leading-tight">
-              Menciptakan Perangkat Lunak dengan Kebanggaan &amp; Ketelitian
+              {about.headline}
             </h2>
-            <p className="text-gray text-lg leading-relaxed mb-6">
-              Didirikan pada tahun 2019, AGSatu dimulai dengan misi sederhana:
-              membantu bisnis berkembang di dunia digital. Hari ini, kami adalah
-              tim pengembang, desainer, dan strategis yang bersemangat mengubah
-              ide menjadi produk digital yang kuat.
-            </p>
-            <p className="text-gray leading-relaxed mb-10">
-              Kami percaya pada komunikasi yang transparan, metodologi agile,
-              dan memberikan nilai nyata. Setiap proyek yang kami tangani adalah
-              kemitraan — kesuksesan Anda adalah kesuksesan kami.
-            </p>
+            {about.description_1 && (
+              <p className="text-gray text-lg leading-relaxed mb-6">
+                {about.description_1}
+              </p>
+            )}
+            {about.description_2 && (
+              <p className="text-gray leading-relaxed mb-10">
+                {about.description_2}
+              </p>
+            )}
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-8">
-              {[
-                {
-                  title: "Proses Agile",
-                  desc: "Pengembangan iteratif dengan pemeriksaan rutin",
-                },
-                {
-                  title: "Kode Berkualitas",
-                  desc: "Kode bersih, mudah dipelihara, dan teruji",
-                },
-                {
-                  title: "Tepat Waktu",
-                  desc: "Kami menghargai tenggat waktu dan berkomunikasi proaktif",
-                },
-                {
-                  title: "Dukungan Jangka Panjang",
-                  desc: "Pemeliharaan berkelanjutan dan dukungan khusus",
-                },
-              ].map((item) => (
-                <div key={item.title} className="flex gap-3.5 group">
-                  <div className="mt-1 w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
-                    <svg
-                      className="w-3 h-3 text-primary"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
+            {about.features.length > 0 && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-8">
+                {about.features.map((item) => (
+                  <div key={item.title} className="flex gap-3.5 group">
+                    <div className="mt-1 w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
+                      <svg
+                        className="w-3 h-3 text-primary"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-dark text-sm">
+                        {item.title}
+                      </h4>
+                      <p className="text-gray text-sm mt-1 leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-dark text-sm">
-                      {item.title}
-                    </h4>
-                    <p className="text-gray text-sm mt-1 leading-relaxed">
-                      {item.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@ import { useAuth } from "../context/AuthContext";
 
 const menuItems = [
   { to: "/admin", label: "Dashboard", end: true },
+  { to: "/admin/about", label: "Tentang Kami" },
   { to: "/admin/services", label: "Layanan" },
   { to: "/admin/portfolios", label: "Portofolio" },
   { to: "/admin/team", label: "Tim" },

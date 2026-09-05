@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             AdminUserSeeder::class,
             CompanyProfileSeeder::class,
             TeamMemberSeeder::class,
+            AboutContentSeeder::class,
             ClientPortalSeeder::class,
         ]);
 
